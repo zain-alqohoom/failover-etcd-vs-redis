@@ -1,0 +1,41 @@
+iteration,event,wall_clock,elapsed_ms,leader_before,leader_after,details
+1,kill,2026-09-29T22:02:30.144871,0.00,etcd1,,SIGKILL sent
+1,election_complete,2026-09-29T22:02:37.374471,7229.32,etcd1,etcd2,detected_new_leader=etcd2
+2,kill,2026-09-29T22:02:59.480131,0.00,etcd2,,SIGKILL sent
+2,election_complete,2026-09-29T22:03:04.652299,5171.91,etcd2,etcd1,detected_new_leader=etcd1
+3,kill,2026-09-29T22:03:24.392294,0.00,etcd1,,SIGKILL sent
+3,election_complete,2026-09-29T22:03:32.474881,8082.33,etcd1,etcd2,detected_new_leader=etcd2
+4,kill,2026-09-29T22:03:53.603845,0.00,etcd2,,SIGKILL sent
+4,election_complete,2026-09-29T22:04:00.392368,6788.24,etcd2,etcd3,detected_new_leader=etcd3
+5,kill,2026-09-29T22:04:09.812508,0.00,etcd3,,SIGKILL sent
+5,election_complete,2026-09-29T22:04:14.824231,5011.47,etcd3,etcd2,detected_new_leader=etcd2
+6,kill,2026-09-29T22:04:28.540863,0.00,etcd2,,SIGKILL sent
+6,election_complete,2026-09-29T22:04:35.298026,6756.92,etcd2,etcd1,detected_new_leader=etcd1
+7,kill,2026-09-29T22:04:46.368078,0.00,etcd1,,SIGKILL sent
+7,election_complete,2026-09-29T22:04:54.809292,8440.99,etcd1,etcd2,detected_new_leader=etcd2
+8,kill,2026-09-29T22:05:19.379969,0.00,etcd2,,SIGKILL sent
+8,election_complete,2026-09-29T22:05:25.662795,6282.58,etcd2,etcd1,detected_new_leader=etcd1
+9,kill,2026-09-29T22:05:48.143616,0.00,etcd1,,SIGKILL sent
+9,election_complete,2026-09-29T22:05:55.765620,7621.78,etcd1,etcd3,detected_new_leader=etcd3
+10,kill,2026-09-29T22:06:17.888047,0.00,etcd3,,SIGKILL sent
+10,election_complete,2026-09-29T22:06:25.364058,7475.76,etcd3,etcd2,detected_new_leader=etcd2
+11,kill,2026-09-29T22:06:51.631716,0.00,etcd2,,SIGKILL sent
+11,election_complete,2026-09-29T22:06:58.527334,6895.37,etcd2,etcd1,detected_new_leader=etcd1
+12,kill,2026-09-29T22:07:14.032481,0.00,etcd1,,SIGKILL sent
+12,election_complete,2026-09-29T22:07:23.574518,9541.78,etcd1,etcd2,detected_new_leader=etcd2
+13,kill,2026-09-29T22:07:43.835566,0.00,etcd2,,SIGKILL sent
+13,election_complete,2026-09-29T22:07:53.070962,9235.16,etcd2,etcd3,detected_new_leader=etcd3
+14,kill,2026-09-29T22:08:12.148064,0.00,etcd3,,SIGKILL sent
+14,election_complete,2026-09-29T22:08:17.441249,5292.95,etcd3,etcd1,detected_new_leader=etcd1
+15,kill,2026-09-29T22:08:27.648472,0.00,etcd1,,SIGKILL sent
+15,election_complete,2026-09-29T22:08:33.414470,5765.75,etcd1,etcd3,detected_new_leader=etcd3
+16,kill,2026-09-29T22:08:57.209050,0.00,etcd3,,SIGKILL sent
+16,election_complete,2026-09-29T22:09:03.355064,6145.77,etcd3,etcd2,detected_new_leader=etcd2
+17,kill,2026-09-29T22:09:20.832185,0.00,etcd2,,SIGKILL sent
+17,election_complete,2026-09-29T22:09:27.353231,6520.80,etcd2,etcd1,detected_new_leader=etcd1
+18,kill,2026-09-29T22:09:39.046006,0.00,etcd1,,SIGKILL sent
+18,election_complete,2026-09-29T22:09:45.366159,6319.80,etcd1,etcd3,detected_new_leader=etcd3
+19,kill,2026-09-29T22:10:10.816142,0.00,etcd3,,SIGKILL sent
+19,election_complete,2026-09-29T22:10:18.675584,7859.20,etcd3,etcd2,detected_new_leader=etcd2
+20,kill,2026-09-29T22:10:41.023808,0.00,etcd2,,SIGKILL sent
+20,election_complete,2026-09-29T22:10:46.441059,5417.00,etcd2,etcd1,detected_new_leader=etcd1

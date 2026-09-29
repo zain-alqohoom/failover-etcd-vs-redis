@@ -1,0 +1,86 @@
+version: '3.8'
+
+networks:
+  failover-net:
+    driver: bridge
+
+services:
+  etcd1:
+    image: quay.io/coreos/etcd:v3.5.9
+    container_name: etcd1
+    environment:
+      - ETCD_NAME=etcd1
+      - ETCD_INITIAL_ADVERTISE_PEER_URLS=http://etcd1:2380
+      - ETCD_LISTEN_PEER_URLS=http://0.0.0.0:2380
+      - ETCD_LISTEN_CLIENT_URLS=http://0.0.0.0:2379
+      - ETCD_ADVERTISE_CLIENT_URLS=http://etcd1:2379
+      - ETCD_INITIAL_CLUSTER=etcd1=http://etcd1:2380,etcd2=http://etcd2:2380,etcd3=http://etcd3:2380
+      - ETCD_INITIAL_CLUSTER_STATE=new
+      - ETCD_INITIAL_CLUSTER_TOKEN=etcd-cluster-1
+      - ETCD_HEARTBEAT_INTERVAL=${ETCD_HEARTBEAT_INTERVAL:-100}
+      - ETCD_ELECTION_TIMEOUT=${ETCD_ELECTION_TIMEOUT:-1000}
+    networks:
+      - failover-net
+    ports:
+      - "2379:2379"
+
+  etcd2:
+    image: quay.io/coreos/etcd:v3.5.9
+    container_name: etcd2
+    environment:
+      - ETCD_NAME=etcd2
+      - ETCD_INITIAL_ADVERTISE_PEER_URLS=http://etcd2:2380
+      - ETCD_LISTEN_PEER_URLS=http://0.0.0.0:2380
+      - ETCD_LISTEN_CLIENT_URLS=http://0.0.0.0:2379
+      - ETCD_ADVERTISE_CLIENT_URLS=http://etcd2:2379
+      - ETCD_INITIAL_CLUSTER=etcd1=http://etcd1:2380,etcd2=http://etcd2:2380,etcd3=http://etcd3:2380
+      - ETCD_INITIAL_CLUSTER_STATE=new
+      - ETCD_INITIAL_CLUSTER_TOKEN=etcd-cluster-1
+      - ETCD_HEARTBEAT_INTERVAL=${ETCD_HEARTBEAT_INTERVAL:-100}
+      - ETCD_ELECTION_TIMEOUT=${ETCD_ELECTION_TIMEOUT:-1000}
+    networks:
+      - failover-net
+
+  etcd3:
+    image: quay.io/coreos/etcd:v3.5.9
+    container_name: etcd3
+    environment:
+      - ETCD_NAME=etcd3
+      - ETCD_INITIAL_ADVERTISE_PEER_URLS=http://etcd3:2380
+      - ETCD_LISTEN_PEER_URLS=http://0.0.0.0:2380
+      - ETCD_LISTEN_CLIENT_URLS=http://0.0.0.0:2379
+      - ETCD_ADVERTISE_CLIENT_URLS=http://etcd3:2379
+      - ETCD_INITIAL_CLUSTER=etcd1=http://etcd1:2380,etcd2=http://etcd2:2380,etcd3=http://etcd3:2380
+      - ETCD_INITIAL_CLUSTER_STATE=new
+      - ETCD_INITIAL_CLUSTER_TOKEN=etcd-cluster-1
+      - ETCD_HEARTBEAT_INTERVAL=${ETCD_HEARTBEAT_INTERVAL:-100}
+      - ETCD_ELECTION_TIMEOUT=${ETCD_ELECTION_TIMEOUT:-1000}
+    networks:
+      - failover-net
+
+  redis-master:
+    image: redis:7.2-alpine
+    container_name: redis-master
+    command: redis-server --appendonly yes
+    networks:
+      - failover-net
+    ports:
+      - "6379:6379"
+
+  redis-replica1:
+    image: redis:7.2-alpine
+    container_name: redis-replica1
+    command: redis-server --replicaof redis-master 6379
+    depends_on:
+      - redis-master
+    networks:
+      - failover-net
+
+  redis-replica2:
+    image: redis:7.2-alpine
+    container_name: redis-replica2
+    command: redis-server --replicaof redis-master 6379
+    depends_on:
+      - redis-master
+    networks:
+      - failover-net
