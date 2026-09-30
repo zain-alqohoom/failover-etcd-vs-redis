@@ -80,9 +80,8 @@ This project compares two distributed systems under identical randomized `kill-t
 ### 1. Clone and set up
 
 ```bash
-git clone <your-repo-url>
-cd "The true cost of failover"
-
+git clone https://github.com/zain-alqohoom/failover-etcd-vs-redis.git
+cd failover-etcd-vs-redis
 # Create a virtual environment
 python3 -m venv venv
 source venv/bin/activate
